@@ -8,6 +8,7 @@ class BuildRunningDrop extends StatelessWidget {
   final int previousIndex;
   final Color color;
   final int itemCount;
+  final double myWidth;
   const BuildRunningDrop({
     Key? key,
     required this.controller,
@@ -15,18 +16,16 @@ class BuildRunningDrop extends StatelessWidget {
     required this.previousIndex,
     required this.color,
     required this.itemCount,
+    required this.myWidth,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final double deviceWidth = MediaQuery.of(context).size.width;
-    final double maxElementWidth = deviceWidth / itemCount;
+    final double maxElementWidth = myWidth / itemCount;
     return AnimatedBuilder(
       animation: controller,
       builder: (_, __) => Transform.translate(
-        offset: Tween<Offset>(
-                begin: Offset(previousIndex * maxElementWidth, 0),
-                end: Offset(selectedIndex * maxElementWidth, 0))
+        offset: Tween<Offset>(begin: Offset(previousIndex * maxElementWidth, 0), end: Offset(selectedIndex * maxElementWidth, 0))
             .animate(
               CurvedAnimation(
                 parent: controller,
