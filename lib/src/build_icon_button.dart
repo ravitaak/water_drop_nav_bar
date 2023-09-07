@@ -15,6 +15,7 @@ class BuildIconButton extends StatelessWidget {
   final Color barColor;
   final double bottomPadding;
   final double barHeight;
+  final double myWidth;
 
   double _bottomIconScale() => seletedIndex == index
       ? Tween<double>(begin: 1.0, end: 0.7)
@@ -58,14 +59,13 @@ class BuildIconButton extends StatelessWidget {
     required this.barColor,
     required this.bottomPadding,
     required this.barHeight,
+    required this.myWidth,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final MediaQueryData mediaQueryData = MediaQuery.of(context);
-    final double deviceWidth = mediaQueryData.size.width;
-    final double maxElementWidth = deviceWidth / 4;
+    final double maxElementWidth = myWidth / 4;
     return GestureDetector(
       onTap: onPressed,
       child: Container(
@@ -80,9 +80,7 @@ class BuildIconButton extends StatelessWidget {
             Transform.scale(
               scale: _bottomIconScale(),
               child: Opacity(
-                  opacity: controller.value > 0.8 && seletedIndex == index
-                      ? 0.0
-                      : 1.0,
+                  opacity: controller.value > 0.8 && seletedIndex == index ? 0.0 : 1.0,
                   child: Icon(
                     unslectedIcon,
                     size: iconSize,
@@ -96,9 +94,7 @@ class BuildIconButton extends StatelessWidget {
                   radius: _clipRadius(),
                 ),
                 child: Opacity(
-                  opacity: controller.value > 0.6 && seletedIndex == index
-                      ? 1.0
-                      : 0.0,
+                  opacity: controller.value > 0.6 && seletedIndex == index ? 1.0 : 0.0,
                   child: Icon(
                     selectedIcon,
                     size: iconSize,
