@@ -26,6 +26,7 @@ class WaterDropNavBar extends StatefulWidget {
   final Color inactiveIconColor;
 
   /// Each active & inactive icon size, default value is 30 don't make it too big or small.
+  final double myWidth;
   final double iconSize;
 
   /// Bottom padding of the bar. If nothing is provided the it will use
@@ -36,6 +37,7 @@ class WaterDropNavBar extends StatefulWidget {
     required this.barItems,
     required this.selectedIndex,
     required this.onItemSelected,
+    required this.myWidth,
     this.bottomPadding,
     this.backgroundColor = Colors.white,
     this.waterDropColor = const Color(0xFF5B75F0),
@@ -51,8 +53,7 @@ class WaterDropNavBar extends StatefulWidget {
   _WaterDropNavBarState createState() => _WaterDropNavBarState();
 }
 
-class _WaterDropNavBarState extends State<WaterDropNavBar>
-    with TickerProviderStateMixin {
+class _WaterDropNavBarState extends State<WaterDropNavBar> with TickerProviderStateMixin {
   int _previousIndex = 0;
 
   late AnimationController _controller;
@@ -87,8 +88,7 @@ class _WaterDropNavBarState extends State<WaterDropNavBar>
     final List<BarItem> items = widget.barItems;
     final double iconSize = widget.iconSize;
     final Color inactiveIconColor = widget.inactiveIconColor;
-    final double bottomPadding =
-        widget.bottomPadding ?? MediaQuery.of(context).padding.bottom;
+    final double bottomPadding = widget.bottomPadding ?? MediaQuery.of(context).padding.bottom;
     final double barHeight = 60 + bottomPadding;
     return Container(
       height: barHeight,
@@ -106,6 +106,7 @@ class _WaterDropNavBarState extends State<WaterDropNavBar>
                   (BarItem item) {
                     final int index = items.indexOf(item);
                     return BuildIconButton(
+                      myWidth: widget.myWidth,
                       bottomPadding: bottomPadding,
                       barHeight: barHeight,
                       barColor: backgroundColor,
@@ -125,6 +126,7 @@ class _WaterDropNavBarState extends State<WaterDropNavBar>
             ),
           ),
           BuildRunningDrop(
+            myWidth: widget.myWidth,
             itemCount: items.length,
             controller: _controller,
             selectedIndex: selectedIndex,
