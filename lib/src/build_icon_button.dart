@@ -65,7 +65,7 @@ class BuildIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double maxElementWidth = myWidth / 4;
+    final double maxElementWidth = myWidth / 5;
     return GestureDetector(
       onTap: onPressed,
       child: Container(
