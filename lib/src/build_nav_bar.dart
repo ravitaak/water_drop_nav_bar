@@ -64,7 +64,7 @@ class _WaterDropNavBarState extends State<WaterDropNavBar> with TickerProviderSt
     _controller = AnimationController(
       vsync: this,
       //milliseconds: 800
-      duration: const Duration(milliseconds: 800),
+      duration: const Duration(milliseconds: 500),
     )..forward(from: 0.0);
   }
 
